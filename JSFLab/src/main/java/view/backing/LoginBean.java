@@ -4,8 +4,10 @@
  */
 package view.backing;
 
+import java.util.ResourceBundle;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlSelectBooleanCheckbox;
 import javax.faces.context.FacesContext;
@@ -59,7 +61,12 @@ public class LoginBean {
     }
 
     public String login() {
-        System.out.println(username);
+        if (getUsername().equals("scott") && getPassword().equals("tiger")){
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage fm = new FacesMessage(ResourceBundle.getBundle("ApplicationMessages").getString("scott.tiger"));
+            context.addMessage("",fm);
+            return "";
+        }
         if (username.equals(password)) {
             return "success";
         } else {

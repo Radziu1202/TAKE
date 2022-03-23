@@ -8,7 +8,7 @@
     </h:head>
     <h:body>
         <h:form>
-            
+            <h:messages globalOnly="true"/>
             <h:panelGrid columns="3">
                 <h:outputLabel for="usernameField" value="#{AppMessages['label.user']}"></h:outputLabel>
                 <h:inputText id="usernameField" value="#{loginBean.username}" required="true" requiredMessage="#{AppMessages['validation.user']}"> 
