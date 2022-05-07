@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <p:tabView>
+             <p:tab title="Form">
+                <h:form>
+                    <p:spinner id="firstValue" value="#{calcBean.firstValue}" required="true"/>
+                    +
+                     <p:spinner id="secondValue" value="#{calcBean.secondValue}" required="true" />
+                     
+                     <p:commandButton value="Calculate" update="CaclOutput date wynik" action="#{calcBean.calculate()}" ajax="true"/>
+                     = 
+                     <h:outputText id="CaclOutput" value="#{calcBean.getOutcome()}"/>
+                     
+                     <p:growl id="wynik">
+                         
+                     </p:growl>
+                     <br/>
+                      <h:outputText id="date" value="#{calcBean.date}"></h:outputText>
+                </h:form>
+              
+             </p:tab>                
+             <p:tab title="Table">
+                   <p:dataTable var="student" rows="2"  value="#{tableBean.students}" sortMode="single"  paginator="true"  allowUnsorting="true">
+                    <p:column sortBy="#{student.surname}" headerText="First name">
+                        <h:outputText value="#{student.surname}"/>
+                    </p:column>
+                    <p:column sortBy="#{student.firstName}" headerText="Last name">
+                        <h:outputText value="#{student.surname}"/>
+                    </p:column>
+                    <p:column sortBy="#{student.avg}" headerText="Average">
+                        <h:outputText value="#{student.avg}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+             
+            <p:tab title="Chart">
+               <p:chart type="line" model="#{lineChartBean.chart}" widgetVar="chart"/> 
+                <br/>
+                <p:commandButton type="button" value="Reset"   onclick="PF('chart').resetZoom()"/>
+            </p:tab>     
+        </p:tabView>
+      
+       
+    </h:body>
+</html>
+
